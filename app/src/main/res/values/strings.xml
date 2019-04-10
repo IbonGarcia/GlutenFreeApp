@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">GlutenFreeApp</string>
-
+    <string name="main_mapa">Mapa</string>
+    <string name="main_lista">Lista</string>
+    <string name="main_salir">Salir</string>
 </resources>
