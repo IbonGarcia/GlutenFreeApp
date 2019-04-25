@@ -63,7 +63,8 @@
         <ImageView
             android:layout_width="305dp"
             android:layout_height="86dp"
-            android:src="@drawable/ic_mainbtn" />
+            android:src="@drawable/ic_mainbtn"
+            android:onClick="lista"/>
 
         <TextView
             android:layout_width="wrap_content"
