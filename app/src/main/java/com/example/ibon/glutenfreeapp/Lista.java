@@ -47,7 +47,7 @@ public class Lista extends AppCompatActivity {
 
         ListView lista = findViewById(R.id.listaLugar);
         lista.setAdapter(adaptador);
-        
+
         db.close();
     }
 }
