@@ -3,4 +3,6 @@
     <string name="main_mapa">Mapa</string>
     <string name="main_lista">Lista</string>
     <string name="main_salir">Salir</string>
+    <string name="comercio">Comercio</string>
+    <string name="restaurante">Restaurante</string>
 </resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/fotoLugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+       android:id="@+id/nombreLugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/fotoLugar"/>
+    <TextView
+        android:id="@+id/tipoLugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/fotoLugar"
+        android:layout_below="@id/nombreLugar"/>
+    <TextView
+        android:id="@+id/descLugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fotoLugar"/>
+
+</RelativeLayout>
