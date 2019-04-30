@@ -4,11 +4,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class Lista extends AppCompatActivity {
+public class Lista extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,5 +51,9 @@ public class Lista extends AppCompatActivity {
         lista.setAdapter(adaptador);
 
         db.close();
+    }
+
+    public void onClick(View v) {
+
     }
 }
