@@ -1,6 +1,8 @@
 package com.example.ibon.glutenfreeapp;
 
-public class Lugar {
+import java.io.Serializable;
+
+public class Lugar implements Serializable{
 
     private int id;
     private String nombre;
@@ -8,10 +10,11 @@ public class Lugar {
     private int tipo;
     private double latitud;
     private double longitud;
+    private String calle;
     private String foto;
     private String descripcion;
 
-    public Lugar(int id, String nom, String telef, int tipo, double lat, double longi, String foto, String desc){
+    public Lugar(int id, String nom, String telef, int tipo, double lat, double longi,String calle, String foto, String desc){
 
         this.id=id;
         this.nombre=nom;
@@ -19,6 +22,7 @@ public class Lugar {
         this.tipo=tipo;
         this.latitud=lat;
         this.longitud=longi;
+        this.calle = calle;
         this.foto=foto;
         this.descripcion=desc;
     }
@@ -75,5 +79,14 @@ public class Lugar {
     }
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+
+    public String getCalle() {
+        return calle;
+    }
+
+    public void setCalle(String calle) {
+        this.calle = calle;
     }
 }

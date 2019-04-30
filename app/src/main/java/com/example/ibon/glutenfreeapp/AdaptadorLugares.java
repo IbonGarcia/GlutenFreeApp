@@ -41,11 +41,7 @@ public class AdaptadorLugares extends ArrayAdapter<Lugar> {
         ImageView iv = item.findViewById(R.id.fotoLugar);
         String image = datos[position].getFoto();
         String[] nom = image.split("\\.");
-        Log.d("nom","NOM : "+nom[0]);
         int id = contex.getResources().getIdentifier(nom[0], "drawable", contex.getPackageName());
-
-        Log.d("ID","ID: "+id);
-        Log.d("Nombre","Nombre: "+image);
 
         iv.setImageResource(id);
 

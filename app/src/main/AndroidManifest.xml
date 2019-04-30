@@ -3,6 +3,7 @@
     package="com.example.ibon.glutenfreeapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/glutenfree"
@@ -22,8 +23,9 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".Lista"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".Lista" />
+        <activity android:name=".InfoCompleta"></activity>
     </application>
 
 </manifest>
