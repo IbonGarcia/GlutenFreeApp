@@ -71,7 +71,7 @@ public class LugaresSQLiteHelper  extends SQLiteOpenHelper{
                 " VALUES ('PASTELERÍA MI POSTRE',945046679,1,42.84822986802399,-2.6752331507206293,'Calle Sierva de Jesús 9 Bajo, 01001 Vitoria-Gasteiz, Álava','postre.jpg','Pasteleria creativa, vegana, sin azúcar, sin gluten, sin lactosa')");
 
         db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
-                " VALUES ('Artepan',9945278888,1,42.843853,-2.6669702,'Calle Jesús Guridi, 2, 01004 Vitoria-Gasteiz, Álava','artepan.jpg','Luminoso local de sencilla decoración moderna que vende panes variados, bollería artesana, tartas y bombones. Variedad de productos sin gluten.')");
+                " VALUES ('Artepan',945278888,1,42.843853,-2.6669702,'Calle Jesús Guridi, 2, 01004 Vitoria-Gasteiz, Álava','artepan.jpg','Luminoso local de sencilla decoración moderna que vende panes variados, bollería artesana, tartas y bombones. Variedad de productos sin gluten.')");
 
         //db.execSQL("UPDATE lugar SET latitud=42.851140336306145, longitud=-2.669170137992893 where nombre='Tomate Cafe'");
     }

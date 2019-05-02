@@ -1,29 +1,33 @@
 package com.example.ibon.glutenfreeapp;
 
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class Lista extends AppCompatActivity{
+import static com.example.ibon.glutenfreeapp.MainActivity.solicitarPermiso;
 
-    @Override
+public class Lista extends AppCompatActivity {
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
 
-        LugaresSQLiteHelper lsq = new LugaresSQLiteHelper(this,"BBDD",null,1);
+
+        solicitarPermiso("android.permission.CALL_PHONE", "La aplicacion necesita permisos para poder realizar llamadas.", 1, this);
+        LugaresSQLiteHelper lsq = new LugaresSQLiteHelper(this, "BBDD", null, 1);
 
         final SQLiteDatabase db = lsq.getWritableDatabase();
 
-        Cursor c = db.rawQuery("SELECT idlugar,nombre,telefono,tipo,latitud,longitud,calle,foto,descripcion FROM lugar ",null);
+        Cursor c = db.rawQuery("SELECT idlugar,nombre,telefono,tipo,latitud,longitud,calle,foto,descripcion FROM lugar ", null);
+
 
         ArrayList<Lugar> info = new ArrayList<Lugar>();
 

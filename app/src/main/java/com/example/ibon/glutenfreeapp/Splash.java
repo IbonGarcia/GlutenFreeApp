@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+
+
 public class Splash extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {

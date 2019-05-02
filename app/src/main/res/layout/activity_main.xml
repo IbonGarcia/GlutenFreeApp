@@ -39,6 +39,7 @@
         android:layout_centerHorizontal="true">
 
         <ImageView
+            android:id="@+id/mapa"
             android:layout_width="305dp"
             android:layout_height="86dp"
             android:src="@drawable/ic_mainbtn" />
@@ -85,6 +86,7 @@
         android:layout_centerHorizontal="true">
 
         <ImageView
+            android:id="@+id/salir"
             android:layout_width="305dp"
             android:layout_height="86dp"
             android:src="@drawable/ic_mainbtn" />

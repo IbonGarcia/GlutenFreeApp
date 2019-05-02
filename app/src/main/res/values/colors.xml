@@ -6,4 +6,6 @@
     <color name="colorSplash">#000000</color>
     <color name="Black">#000000</color>
     <color name="White">#FFFFFF</color>
+    <color name="Green">#00a900</color>
+    <color name="Blue">#0041a3</color>
 </resources>
