@@ -71,4 +71,11 @@ public class Lista extends AppCompatActivity {
             }
         });
     }
+
+    public void back(View view){
+
+        Intent intento = new Intent(this,MainActivity.class);
+        startActivity(intento);
+        finish();
+    }
 }
