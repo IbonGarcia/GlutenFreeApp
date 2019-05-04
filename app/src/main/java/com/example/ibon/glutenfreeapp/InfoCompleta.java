@@ -55,7 +55,6 @@ public class InfoCompleta extends AppCompatActivity {
 
     public void llamar(View view) {
 
-
         if (ActivityCompat.checkSelfPermission(InfoCompleta.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             return;
         }

@@ -76,7 +76,6 @@ public class LugaresSQLiteHelper  extends SQLiteOpenHelper{
         //db.execSQL("UPDATE lugar SET latitud=42.851140336306145, longitud=-2.669170137992893 where nombre='Tomate Cafe'");
     }
 
-    @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }

@@ -17,9 +17,57 @@
         mapbox:mapbox_cameraZoom="11" />
 
     <RelativeLayout
+        android:id="@+id/layoutTitulo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@color/White"
+        android:layout_marginHorizontal="30dp"
+        android:visibility="invisible">
 
+        <TextView
+            android:id="@+id/lugarName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="26dp"
+            android:textColor="@color/Black"
+            android:text="PRUEBA"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutControles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible"
+        android:layout_marginBottom="100dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/llamar"
+            android:background="@color/Green"
+            android:textColor="@color/White"
+            android:onClick="llamarLugar"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/info"
+            android:background="@color/Black"
+            android:textColor="@color/White"
+            android:onClick="verInfo"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/llegar"
+            android:background="@color/Blue"
+            android:textColor="@color/White"
+            android:layout_alignParentRight="true"/>
 
     </RelativeLayout>
 
@@ -27,13 +75,13 @@
         android:id="@+id/linear3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10dp">
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
             android:src="@drawable/ic_location"
             android:onClick="restoreCameraButton"/>
 
@@ -42,8 +90,6 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_back"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
             android:onClick="back"/>
     </RelativeLayout>
 

@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     if(event.getAction() == MotionEvent.ACTION_UP){
                         salir.setImageResource(R.drawable.ic_mainbtn);
                         finish();
+                        System.exit(0);
                     }
                 }
                 return true;

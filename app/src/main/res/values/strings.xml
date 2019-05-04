@@ -9,6 +9,7 @@
     <string name="direccion">Dirección: </string>
     <string name="llamar">Llamar</string>
     <string name="llegar">Llegar</string>
+    <string name="info">Información</string>
     <string name="mapbox_key">pk.eyJ1IjoiZGV2LW1hcmNrIiwiYSI6ImNqcHMwM3pieDAwYWQ0OG8xNjV1b3VrNXgifQ.kGQTu-vJ6Wtlfzc5GWghhA</string>
     <string name="title_activity_mapa">Map</string>
 </resources>

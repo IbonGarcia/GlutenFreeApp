@@ -10,19 +10,22 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
@@ -40,6 +43,15 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
     private boolean inMarker;
     private Location location;
     private static final int MAP_ANIMATION_TIME = 700;
+    private SQLiteDatabase db;
+    private CameraPosition lastCp;
+    private RelativeLayout rlTitulo,rlControles;
+    private TextView titulo;
+    private String telefono;
+    private String nombre;
+    private MapboxMap mapboxMap;
+    private Marker marker;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +75,7 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
         mapView.onCreate(savedInstanceState);
 
         LugaresSQLiteHelper lsq = new LugaresSQLiteHelper(this, "BBDD", null, 1);
-        final SQLiteDatabase db = lsq.getWritableDatabase();
+        db = lsq.getWritableDatabase();
 
         mapView.getMapAsync(new OnMapReadyCallback() {
 
@@ -74,6 +86,7 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
                     public void onStyleLoaded(@NonNull Style style) {
                     }
                 });
+
                 mapboxMap.setOnMarkerClickListener(Mapa.this);
                 mapboxMap.getUiSettings().setLogoEnabled(false);
                 mapboxMap.getUiSettings().setCompassEnabled(false);
@@ -89,7 +102,6 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
                         .build(); // Creates a CameraPosition from the builder
 
                 mapboxMap.setCameraPosition(cp);
-
                 mapboxMap.setMaxZoomPreference(20.05);
                 mapboxMap.setMinZoomPreference(15.05);
 
@@ -177,10 +189,6 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
 
     public void onLocationChanged(Location location) {
 
-        Log.d("prueba"," ON LOCATION CHANGED");
-        Toast toast1 = Toast.makeText(getApplicationContext(), "ON LOCATION CHANGED", Toast.LENGTH_SHORT);
-        toast1.show();
-
         //remove location callback:
         // lm.removeUpdates(this);
 
@@ -215,26 +223,47 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
 
     }
 
+    // METODO QUE CONTROLA EL EVENTO QUE SUCEDE CUANDO SE HACE CLICK SOBRE EL BOTON ATRAS
+    // SI LA CAMARA ESTA 'SITUADA' EN UN MARCADOR AL HACER CLICK SOBRE EL BOTON SE SITUA LA CAMARA DONDE ESTABA ANTES DE PULSAR EL MARCADOR
+    // SI LA CAMARA NO ESTA SITUADA EN NINGUN MARCADOR DARLE AL BOTON ATRAS CIERRA LA ACTIVIDAD ACTUAL Y VUELVE A EL MENU PRINCIPAL
     public void back(View view) {
 
         if (inMarker) {
-            restoreCamera();
-        } else {
+
+            inMarker = false;
+            marker.hideInfoWindow();
+            mapView.getMapAsync(new OnMapReadyCallback() {
+
+                public void onMapReady(@NonNull MapboxMap mapboxMap) {
+
+                    // mapboxMap.setCameraPosition(cp);
+                    mapboxMap.animateCamera( CameraUpdateFactory.newCameraPosition(lastCp), MAP_ANIMATION_TIME );
+                    mapboxMap.getUiSettings().setAllGesturesEnabled(true);
+                }
+            });
+            rlTitulo = findViewById(R.id.layoutTitulo);
+            rlTitulo.setVisibility(View.INVISIBLE);
+
+            rlControles = findViewById(R.id.layoutControles);
+            rlControles.setVisibility(View.INVISIBLE);
+        }
+        else {
+
             Intent intento = new Intent(this, MainActivity.class);
             startActivity(intento);
             finish();
         }
     }
 
-    public void restoreCamera() {
-        inMarker = false;
-        getLocation();
-    }
-
     public void restoreCameraButton(View view) {
 
-        getLocation();
+        rlTitulo = findViewById(R.id.layoutTitulo);
+        rlTitulo.setVisibility(View.INVISIBLE);
 
+        rlControles = findViewById(R.id.layoutControles);
+        rlControles.setVisibility(View.INVISIBLE);
+
+        getLocation();
         mapView.getMapAsync(new OnMapReadyCallback() {
 
             public void onMapReady(@NonNull MapboxMap mapboxMap) {
@@ -246,16 +275,89 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
                         .tilt(30) // Set the camera tilt
                         .build(); // Creates a CameraPosition from the builder
 
-                mapboxMap.setCameraPosition(cp);
+                mapboxMap.animateCamera( CameraUpdateFactory.newCameraPosition( cp ), MAP_ANIMATION_TIME );
+                mapboxMap.getUiSettings().setAllGesturesEnabled(true);
+
             }
         });
     }
 
     // LISTENER PARA LOS MARCADORES
-    public boolean onMarkerClick(@NonNull Marker marker) {
+    public boolean onMarkerClick(@NonNull final Marker marker) {
 
-        String nombre = marker.getTitle();
+        this.marker = marker;
 
+        nombre = marker.getTitle();
+
+        Cursor c =  db.rawQuery("SELECT idlugar,nombre,telefono,tipo,latitud,longitud,calle,foto,descripcion FROM lugar WHERE nombre = '"+nombre+"' ", null);
+
+        if (c.moveToFirst()) {
+
+            telefono = c.getString(2);
+
+            rlTitulo = findViewById(R.id.layoutTitulo);
+            rlTitulo.setVisibility(View.VISIBLE);
+
+            rlControles = findViewById(R.id.layoutControles);
+            rlControles.setVisibility(View.VISIBLE);
+
+            titulo = findViewById(R.id.lugarName);
+            titulo.setText(c.getString(1));
+
+            moveCameraTo(c.getDouble(4),c.getDouble(5));
+        }
         return false;
+    }
+
+    public void moveCameraTo(final double lat, final double lon){
+
+        inMarker = true;
+        mapView.getMapAsync(new OnMapReadyCallback() {
+
+            public void onMapReady(@NonNull MapboxMap mapboxMap) {
+
+                lastCp = mapboxMap.getCameraPosition();
+
+                CameraPosition cp = new CameraPosition.Builder()
+                        .target(new LatLng(lat, lon)) // Sets the new camera position
+                        .zoom(18) // Sets the zoom
+                        .bearing(180) // Rotate the camera
+                        .tilt(30) // Set the camera tilt
+                        .build(); // Creates a CameraPosition from the builder
+
+                // mapboxMap.setCameraPosition(cp);
+                mapboxMap.animateCamera( CameraUpdateFactory.newCameraPosition( cp ), MAP_ANIMATION_TIME );
+                mapboxMap.getUiSettings().setAllGesturesEnabled(false);
+            }
+        });
+    }
+
+    // METODOS PARA LOS CONTROLES
+    public void llamarLugar(View view) {
+
+        if (ActivityCompat.checkSelfPermission(Mapa.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        String llamada = "tel:"+telefono;
+        startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(llamada)));
+    }
+    public void verInfo(View view) {
+
+        Cursor c =  db.rawQuery("SELECT idlugar,nombre,telefono,tipo,latitud,longitud,calle,foto,descripcion FROM lugar WHERE nombre = '"+nombre+"' ", null);
+        if(c.moveToFirst()){
+
+            Lugar lug = new Lugar(c.getInt(0),
+                    c.getString(1),
+                    c.getString(2),
+                    c.getInt(3),
+                    c.getDouble(4),
+                    c.getDouble(5),
+                    c.getString(6),
+                    c.getString(7),
+                    c.getString(8));
+            Intent intento = new Intent(view.getContext(),InfoCompleta.class);
+            intento.putExtra("Info",lug);
+            startActivity(intento);
+        }
     }
 }
