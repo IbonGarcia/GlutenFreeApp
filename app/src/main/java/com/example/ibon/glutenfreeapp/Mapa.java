@@ -52,7 +52,6 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
     private MapboxMap mapboxMap;
     private Marker marker;
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -257,6 +256,7 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
 
     public void restoreCameraButton(View view) {
 
+        inMarker = false;
         rlTitulo = findViewById(R.id.layoutTitulo);
         rlTitulo.setVisibility(View.INVISIBLE);
 
@@ -358,6 +358,22 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
             Intent intento = new Intent(view.getContext(),InfoCompleta.class);
             intento.putExtra("Info",lug);
             startActivity(intento);
+        }
+    }
+
+    public void llegarA(View view){
+
+        if(inMarker){
+            Cursor c =  db.rawQuery("SELECT idlugar,nombre,telefono,tipo,latitud,longitud,calle,foto,descripcion FROM lugar WHERE nombre = '"+nombre+"' ", null);
+            if(c.moveToFirst()){
+
+                double lat = c.getDouble(4);
+                double log = c.getDouble(5);
+
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("google.navigation:q="+lat+","+log+"&mode=w"));
+                startActivity(intent);
+            }
         }
     }
 }

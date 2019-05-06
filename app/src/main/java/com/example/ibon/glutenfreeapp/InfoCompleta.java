@@ -15,13 +15,14 @@ import android.widget.TextView;
 public class InfoCompleta extends AppCompatActivity {
 
     private String telefono;
+    private Lugar lug;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_completa);
 
         // RECOJEMOS EL OBJETO CON LA INFORMACION
-        Lugar lug = (Lugar) getIntent().getSerializableExtra("Info");
+        lug = (Lugar) getIntent().getSerializableExtra("Info");
 
         telefono = lug.getTelefono();
 
@@ -64,10 +65,13 @@ public class InfoCompleta extends AppCompatActivity {
 
     public void llegar(View view){
 
+        double lat = lug.getLatitud();
+        double log = lug.getLongitud();
 
-        if (ActivityCompat.checkSelfPermission(InfoCompleta.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
+
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("google.navigation:q="+lat+","+log+"&mode=w"));
+        startActivity(intent);
     }
 
     public void  atras(View view){

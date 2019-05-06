@@ -67,7 +67,8 @@
             android:text="@string/llegar"
             android:background="@color/Blue"
             android:textColor="@color/White"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:onClick="llegarA"/>
 
     </RelativeLayout>
 
