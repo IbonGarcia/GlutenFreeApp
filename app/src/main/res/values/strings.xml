@@ -12,4 +12,12 @@
     <string name="info">Información</string>
     <string name="mapbox_key">pk.eyJ1IjoiZGV2LW1hcmNrIiwiYSI6ImNqcHMwM3pieDAwYWQ0OG8xNjV1b3VrNXgifQ.kGQTu-vJ6Wtlfzc5GWghhA</string>
     <string name="title_activity_mapa">Map</string>
+    <string name="filter">Filtro</string>
+    <string name="Appinfo">App info</string>
+    <string name="Todo">Todo</string>
+    <string name="Restaurantes">Restaurantes</string>
+    <string name="Comercios">Comercios</string>
+    <string name="Filtrar">Filtrar</string>
+    <string name="FiltroMapa">Filtrar los lugares mostrados en el mapa</string>
+    <string name="FiltroLista">Filtrar los lugares mostrados en la lista</string>
 </resources>

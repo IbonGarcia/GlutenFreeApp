@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -25,6 +28,8 @@ public class Lista extends AppCompatActivity {
         LugaresSQLiteHelper lsq = new LugaresSQLiteHelper(this, "BBDD", null, 1);
 
         final SQLiteDatabase db = lsq.getWritableDatabase();
+
+        int filtro = getIntent().getIntExtra("filtro",3);
 
         Cursor c = db.rawQuery("SELECT idlugar,nombre,telefono,tipo,latitud,longitud,calle,foto,descripcion FROM lugar ", null);
 
@@ -77,5 +82,40 @@ public class Lista extends AppCompatActivity {
         Intent intento = new Intent(this,MainActivity.class);
         startActivity(intento);
         finish();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+
+            case R.id.filtro:
+                openFilter();
+                return true;
+            case R.id.Appinfo:
+                openSettings();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void openFilter(){
+        Intent intento = new Intent(getApplicationContext(),Filtro.class);
+        intento.putExtra("activity","mapa");
+        startActivity(intento);
+        finish();
+    }
+
+    public void openSettings(){
+
+
+
     }
 }

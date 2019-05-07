@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
                     if(event.getAction() == MotionEvent.ACTION_UP){
                         ImageView iv = findViewById(R.id.btnLista);
                         iv.setImageResource(R.drawable.ic_mainbtn);
-
                         Intent intento = new Intent(v.getContext(),Lista.class);
+                        intento.putExtra("filtro",2);
                         startActivity(intento);
                         finish();
                     }
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
                         mapa.setImageResource(R.drawable.ic_mainbtn);
                         Intent intento = new Intent(v.getContext(),Mapa.class);
+                        intento.putExtra("filtro",2);
                         startActivity(intento);
                         finish();
                     }

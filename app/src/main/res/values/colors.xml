@@ -8,4 +8,5 @@
     <color name="White">#FFFFFF</color>
     <color name="Green">#00a900</color>
     <color name="Blue">#0041a3</color>
+    <color name="ActionBar">#3EECDB</color>
 </resources>

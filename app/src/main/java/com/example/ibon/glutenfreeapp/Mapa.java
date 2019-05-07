@@ -16,10 +16,16 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
+
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.Marker;
@@ -51,6 +57,7 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
     private String nombre;
     private MapboxMap mapboxMap;
     private Marker marker;
+    private Cursor c;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +113,19 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
 
                 mapboxMap.clear();
 
-                Cursor c = db.rawQuery("SELECT idlugar,nombre,telefono,tipo,latitud,longitud,calle,foto,descripcion FROM lugar ", null);
+                int filtro = getIntent().getIntExtra("filtro",3);
+
+                if(filtro == 2) {
+                    c = db.rawQuery("SELECT idlugar,nombre,telefono,tipo,latitud,longitud,calle,foto,descripcion FROM lugar ", null);
+                }
+                if(filtro == 0){
+                    // COMERCIOS
+                    c = db.rawQuery("SELECT idlugar,nombre,telefono,tipo,latitud,longitud,calle,foto,descripcion FROM lugar WHERE tipo=1 ", null);
+                }
+                if(filtro == 1){
+                    // RESTAURANTES
+                    c = db.rawQuery("SELECT idlugar,nombre,telefono,tipo,latitud,longitud,calle,foto,descripcion FROM lugar WHERE tipo=0 ", null);
+                }
 
                 if (c.moveToFirst()) {
 
@@ -117,13 +136,11 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
 
                         if (c.getInt(3) == 0) {
                             // RESTAURANTE
-                            mapboxMap.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).setTitle(c.getString(1)));
+                            mapboxMap.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).setTitle(c.getString(1)).setIcon(factory.fromResource(R.mipmap.ic_restaurante_foreground)));
                         } else {
                             // COMERCIO
-                            mapboxMap.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).setTitle(c.getString(1)));
-                            // mapboxMap.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).setIcon(factory.fromResource(R.drawable.ic_marker_v)));
+                            mapboxMap.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).setTitle(c.getString(1)).setIcon(factory.fromResource(R.mipmap.ic_comercio_foreground)));
                         }
-
                     } while (c.moveToNext());
                 }
             }
@@ -376,4 +393,39 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
             }
         }
     }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+
+            case R.id.filtro:
+                openFilter();
+                return true;
+            case R.id.Appinfo:
+                openSettings();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void openFilter(){
+        Intent intento = new Intent(getApplicationContext(),Filtro.class);
+        intento.putExtra("activity","mapa");
+        startActivity(intento);
+        finish();
+    }
+
+   public void openSettings(){
+
+
+
+   }
 }
