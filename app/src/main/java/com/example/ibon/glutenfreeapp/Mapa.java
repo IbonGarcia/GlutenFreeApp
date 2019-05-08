@@ -24,8 +24,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
-
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.Marker;
@@ -37,7 +35,6 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
-
 
 public class Mapa extends AppCompatActivity implements LocationListener, MapboxMap.OnMarkerClickListener {
 
@@ -55,12 +52,14 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
     private TextView titulo;
     private String telefono;
     private String nombre;
-    private MapboxMap mapboxMap;
     private Marker marker;
     private Cursor c;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        latitude = 42.8463;
+        longitude = -2.6723;
 
         int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
 
@@ -68,9 +67,8 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-            } else {
-
+            }
+            else {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
             }
         }
@@ -97,6 +95,7 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
                 mapboxMap.getUiSettings().setLogoEnabled(false);
                 mapboxMap.getUiSettings().setCompassEnabled(false);
                 mapboxMap.getUiSettings().setAttributionEnabled(false);
+
 
                 getLocation();
 
@@ -186,27 +185,30 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
 
         lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         criteria = new Criteria();
-        String bestProvider = String.valueOf(lm.getBestProvider(criteria, true)).toString();
+        // String bestProvider = String.valueOf(lm.getBestProvider(criteria, true));
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        Location location = lm.getLastKnownLocation(bestProvider);
+        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         if (location != null) {
             this.location = location;
             latitude = location.getLatitude();
             longitude = location.getLongitude();
-        } else {
+        }
+        else {
             Toast toast1 = Toast.makeText(getApplicationContext(), " LOCATION UPDATES ", Toast.LENGTH_SHORT);
             toast1.show();
-            lm.requestLocationUpdates(bestProvider, 1000, 0, (LocationListener) this);
         }
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, this);
     }
 
     public void onLocationChanged(Location location) {
 
         //remove location callback:
-        // lm.removeUpdates(this);
+        Toast toast1 = Toast.makeText(getApplicationContext(), " LOCATION CHANGED ", Toast.LENGTH_SHORT);
+        toast1.show();
+        lm.removeUpdates(this);
 
         latitude = location.getLatitude();
         longitude = location.getLongitude();
@@ -294,7 +296,6 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
 
                 mapboxMap.animateCamera( CameraUpdateFactory.newCameraPosition( cp ), MAP_ANIMATION_TIME );
                 mapboxMap.getUiSettings().setAllGesturesEnabled(true);
-
             }
         });
     }

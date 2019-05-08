@@ -19,6 +19,8 @@ import static com.example.ibon.glutenfreeapp.MainActivity.solicitarPermiso;
 
 public class Lista extends AppCompatActivity {
 
+    private Cursor c;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
@@ -31,8 +33,17 @@ public class Lista extends AppCompatActivity {
 
         int filtro = getIntent().getIntExtra("filtro",3);
 
-        Cursor c = db.rawQuery("SELECT idlugar,nombre,telefono,tipo,latitud,longitud,calle,foto,descripcion FROM lugar ", null);
-
+        if(filtro == 2) {
+            c = db.rawQuery("SELECT idlugar,nombre,telefono,tipo,latitud,longitud,calle,foto,descripcion FROM lugar ", null);
+        }
+        if(filtro == 0){
+            // COMERCIOS
+            c = db.rawQuery("SELECT idlugar,nombre,telefono,tipo,latitud,longitud,calle,foto,descripcion FROM lugar WHERE tipo=1 ", null);
+        }
+        if(filtro == 1){
+            // RESTAURANTES
+            c = db.rawQuery("SELECT idlugar,nombre,telefono,tipo,latitud,longitud,calle,foto,descripcion FROM lugar WHERE tipo=0 ", null);
+        }
 
         ArrayList<Lugar> info = new ArrayList<Lugar>();
 
@@ -108,11 +119,10 @@ public class Lista extends AppCompatActivity {
 
     public void openFilter(){
         Intent intento = new Intent(getApplicationContext(),Filtro.class);
-        intento.putExtra("activity","mapa");
+        intento.putExtra("activity","lista");
         startActivity(intento);
         finish();
     }
-
     public void openSettings(){
 
 
