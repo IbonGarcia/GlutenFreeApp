@@ -146,6 +146,7 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
         });
     }
 
+    // METODOS DEL MAPA
     public void onStart() {
         super.onStart();
         mapView.onStart();
@@ -202,7 +203,7 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
         }
         lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, this);
     }
-
+    // METODOS DEL LISTENER DEL MAPA
     public void onLocationChanged(Location location) {
 
         //remove location callback:
