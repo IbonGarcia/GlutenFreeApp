@@ -427,7 +427,9 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
 
    public void openSettings(){
 
-
-
+       Intent intento = new Intent(getApplicationContext(),AppInfo.class);
+       intento.putExtra("activity","mapa");
+       startActivity(intento);
+       finish();
    }
 }

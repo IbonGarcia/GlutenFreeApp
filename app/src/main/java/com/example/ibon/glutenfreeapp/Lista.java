@@ -125,7 +125,9 @@ public class Lista extends AppCompatActivity {
     }
     public void openSettings(){
 
-
-
+        Intent intento = new Intent(getApplicationContext(),AppInfo.class);
+        intento.putExtra("activity","lista");
+        startActivity(intento);
+        finish();
     }
 }

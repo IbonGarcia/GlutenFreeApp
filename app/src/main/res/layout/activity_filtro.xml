@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:textSize="25dp"
-            android:textColor="@color/White"/>
+            android:textColor="@color/White"
+            android:layout_marginHorizontal="20dp"/>
 
         <RelativeLayout
             android:id="@+id/controles"

@@ -21,4 +21,10 @@
     <string name="FiltroMapa">Filtrar los lugares mostrados en el mapa</string>
     <string name="FiltroLista">Filtrar los lugares mostrados en la lista</string>
     <string name="title_activity_app_info">AppInfo</string>
+    <string name="org">Org: Ciudad Jardin</string>
+    <string name="app">Nombre de la aplicación: GlutenFreeApp</string>
+    <string name="version">Version:  1.0</string>
+    <string name="develp">Desarrollador: Ibon García de Cortázar</string>
+    <string name="permisos">Permisos necesarios: Permiso de ubicación y permiso de llamadas</string>
+    <string name="desc">Descripción: Aplicación de uso simple, principalmente para el uso por parte de personas celiacas. La aplicación señala en el mapa aquellos restaurantes y comercios y o supermercados en los cuales se sirve o se vende comida para celiacos. La aplicación permite llamar a dichos lugares, para poder consultar, reservar o lo que se requiera. Tambien dispone de una función GPS para poder ir a el lugar deseado. </string>
 </resources>

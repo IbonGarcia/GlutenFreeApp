@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="10dp"
     tools:context=".AppInfo">
 
     <ImageView
@@ -11,10 +12,11 @@
         android:layout_width="80dp"
         android:layout_height="100dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/ciudadjardinlogo" />
 
     <TextView
+        android:id="@+id/tituloAppInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -22,5 +24,60 @@
         android:textSize="30dp"
         android:textColor="@color/Black"
         android:layout_below="@id/logoJarrdin"/>
+
+    <TextView
+        android:id="@+id/org"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tituloAppInfo"
+        android:layout_marginTop="70dp"
+        android:textSize="16dp"
+        android:textColor="@color/Black"
+        android:text="@string/app"/>
+    <TextView
+        android:id="@+id/nombreApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/org"
+        android:text="@string/version"
+        android:textColor="@color/Black"
+        android:textSize="16dp"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nombreApp"
+        android:textSize="16dp"
+        android:textColor="@color/Black"
+        android:text="@string/org"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:id="@+id/desarrollador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/version"
+        android:text="@string/develp"
+        android:textColor="@color/Black"
+        android:layout_marginTop="20dp"
+        android:textSize="16dp"/>
+    <TextView
+        android:id="@+id/permisos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:layout_below="@id/desarrollador"
+        android:text="@string/permisos"
+        android:textColor="@color/Black"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/permisos"
+        android:textColor="@color/Black"
+        android:textSize="16dp"
+        android:text="@string/desc"
+        android:layout_marginTop="20dp"/>
 
 </RelativeLayout>
