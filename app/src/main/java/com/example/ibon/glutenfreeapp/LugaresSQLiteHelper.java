@@ -73,6 +73,30 @@ public class LugaresSQLiteHelper  extends SQLiteOpenHelper{
         db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
                 " VALUES ('Artepan',945278888,1,42.843853,-2.6669702,'Calle Jesús Guridi, 2, 01004 Vitoria-Gasteiz, Álava','artepan.jpg','Luminoso local de sencilla decoración moderna que vende panes variados, bollería artesana, tartas y bombones. Variedad de productos sin gluten.')");
 
+        db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
+                " VALUES ('Mercadona - Armentia',945318999,1,42.835706070327376,-2.700903245369915,'Calle Alto de Armentia, 7, Vitoria-Gasteiz, Álava','mercadona.jpg','Mercadona es una compañía de supermercados, de capital 100% español y familiar, precios muy asequibles, y productos de buena calidad.')");
+
+        db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
+                " VALUES ('Mercadona - Foronda',945318995,1,42.865078147610575,-2.6875213635970567,'Portal de Foronda Kalea, Vitoria-Gasteiz, Álava','mercadona.jpg','Mercadona es una compañía de supermercados, de capital 100% español y familiar, precios muy asequibles, y productos de buena calidad.')");
+
+        db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
+                " VALUES ('Mercadona - Simon de Anda',945318996,1,42.85516131570307,-2.674404105438242,'Simon de Anda Kalea, 19, Vitoria-Gasteiz, Álava','mercadona.jpg','Mercadona es una compañía de supermercados, de capital 100% español y familiar, precios muy asequibles, y productos de buena calidad.')");
+
+        db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
+                " VALUES ('Mercadona - Av.Los Huetos',945318998,1,42.85548670336627,-2.71026454670195,'Av. de Los Huetos, Vitoria-Gasteiz, Álava','mercadona.jpg','Mercadona es una compañía de supermercados, de capital 100% español y familiar, precios muy asequibles, y productos de buena calidad.')");
+
+        db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
+                " VALUES ('Mercadona - Olarizu',945318997,1,42.834352943842674,-2.6592441090821524,'Olarizu Hiribidea, Vitoria-Gasteiz, Álava','mercadona.jpg','Mercadona es una compañía de supermercados, de capital 100% español y familiar, precios muy asequibles, y productos de buena calidad.')");
+
+        db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
+                " VALUES ('Eroski - Boulevard',945123860,1,42.861741505116214,-2.66673604132302,'Zaramaga, 1, 01013 Vitoria-Gasteiz, Araba','eroski.png','Eroski, supermercados de origen vasco, con buena calidad de productos.Este es uno de los supermercados más grandes de la ciudad')");
+
+        db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
+                " VALUES ('Eroski - Simon de Anda',945200033,1,42.8550472724377,-2.674861422088327,'Simon de Anda Kalea, 17, Vitoria-Gasteiz, Álava','eroski.png','Eroski, supermercados de origen vasco, con buena calidad de productos.')");
+
+        db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
+                " VALUES ('Eroski - Pio XII',945250597,1,42.84408084477144,-2.6659261241636614,'Calle Pío XII, 7, Vitoria-Gasteiz, Álava','eroski.png','Eroski, supermercados de origen vasco, con buena calidad de productos.')");
+
         //db.execSQL("UPDATE lugar SET latitud=42.851140336306145, longitud=-2.669170137992893 where nombre='Tomate Cafe'");
     }
 
