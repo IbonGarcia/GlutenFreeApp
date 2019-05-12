@@ -109,7 +109,6 @@ public class LugaresSQLiteHelper  extends SQLiteOpenHelper{
         db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
                 " VALUES ('Artepan Boulevard', 945068888,1,42.86216820692732,-2.6690736001864934,' Centro Comercial El Boulevard, Zaramaga Kalea, 3, 01013 Vitoria-Gasteiz, Álava','artepan.jpg','Vende panes variados, bollería artesana, tartas y bombones. Variedad de productos sin gluten.')");
 
-
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        solicitarPermiso("android.permission.CALL_PHONE", "La aplicacion necesita permisos para poder realizar llamadas.", 1, this);
+
 
         ImageView iv = findViewById(R.id.btnLista);
         iv.setOnTouchListener(new View.OnTouchListener() {
@@ -90,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        
+        solicitarPermiso("android.permission.CALL_PHONE", "La aplicacion necesita permisos para poder realizar llamadas.", 1, this);
     }
 
     public static void solicitarPermiso(final String permiso, String justificacion, final int requestCode, final Activity actividad) {
@@ -118,9 +120,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == 1){
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            }
-            else {
-                Toast.makeText(this, "Sin el permiso, no puedo realizar llamadas",Toast.LENGTH_SHORT).show();
             }
         }
         if (requestCode == 2){
