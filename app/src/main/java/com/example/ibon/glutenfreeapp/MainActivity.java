@@ -18,10 +18,11 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("ClickableViewAccessibility")
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        solicitarPermiso("android.permission.CALL_PHONE", "La aplicacion necesita permisos para poder realizar llamadas.", 1, this);
 
         ImageView iv = findViewById(R.id.btnLista);
         iv.setOnTouchListener(new View.OnTouchListener() {

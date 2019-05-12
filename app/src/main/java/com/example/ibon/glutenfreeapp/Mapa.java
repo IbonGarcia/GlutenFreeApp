@@ -207,27 +207,11 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
     public void onLocationChanged(Location location) {
 
         //remove location callback:
-        Toast toast1 = Toast.makeText(getApplicationContext(), " LOCATION CHANGED ", Toast.LENGTH_SHORT);
-        toast1.show();
+
         lm.removeUpdates(this);
 
         latitude = location.getLatitude();
         longitude = location.getLongitude();
-
-        mapView.getMapAsync(new OnMapReadyCallback() {
-
-            public void onMapReady(@NonNull MapboxMap mapboxMap) {
-
-                CameraPosition cp = new CameraPosition.Builder()
-                        .target(new LatLng(latitude, longitude)) // Sets the new camera position
-                        .zoom(17) // Sets the zoom
-                        .bearing(180) // Rotate the camera
-                        .tilt(30) // Set the camera tilt
-                        .build(); // Creates a CameraPosition from the builder
-
-                mapboxMap.setCameraPosition(cp);
-            }
-        });
     }
 
     public void onStatusChanged(String provider, int status, Bundle extras) {

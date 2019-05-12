@@ -25,8 +25,6 @@ public class Lista extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
 
-
-        solicitarPermiso("android.permission.CALL_PHONE", "La aplicacion necesita permisos para poder realizar llamadas.", 1, this);
         LugaresSQLiteHelper lsq = new LugaresSQLiteHelper(this, "BBDD", null, 1);
 
         final SQLiteDatabase db = lsq.getWritableDatabase();

@@ -97,7 +97,19 @@ public class LugaresSQLiteHelper  extends SQLiteOpenHelper{
         db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
                 " VALUES ('Eroski - Pio XII',945250597,1,42.84408084477144,-2.6659261241636614,'Calle Pío XII, 7, Vitoria-Gasteiz, Álava','eroski.png','Eroski, supermercados de origen vasco, con buena calidad de productos.')");
 
-        //db.execSQL("UPDATE lugar SET latitud=42.851140336306145, longitud=-2.669170137992893 where nombre='Tomate Cafe'");
+        db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
+                " VALUES ('La Pepita',945000099,0,42.8461456,-2.6806969,'Madre Vedruna Kalea, 10, 01008 Vitoria-Gasteiz, Araba','pepita.jpg','La Pepita no es un restaurante con una gastronomía innovadora que tiene la Hamburguesa Premium como plato principal y donde todo se hace al momento. Opciones veganas, vegetarianas, y sin gluten.')");
+
+        db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
+                " VALUES ('Fosters Hollywood',945257271,0,42.86213599581467,-2.6705219553767563,'C.C. Boulevard, Zaramaga Kalea, 1, 01013 Vitoria-Gasteiz, Álava','fosters.jpg','Hamburguesas y comida típica americana y tex-mex en cadena de diners con decoración industrial y de películas. En su pagina web mencionan comida sin gluten.')");
+
+        db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
+                " VALUES ('FrescCo',945269260,0,42.862370153832046,-2.6696132521528853,'C.C. Boulevard, Zaramaga Kalea, 1, 01013 Vitoria-Gasteiz, Álava','fresco.jpg','Ensaldas frías y platos de temporada en cadena de bufés libres con gastronomía mediterránea personalizable.')");
+
+        db.execSQL("INSERT INTO lugar (nombre, telefono, tipo,latitud, longitud,calle, foto,descripcion)" +
+                " VALUES ('Artepan Boulevard', 945068888,1,42.86216820692732,-2.6690736001864934,' Centro Comercial El Boulevard, Zaramaga Kalea, 3, 01013 Vitoria-Gasteiz, Álava','artepan.jpg','Vende panes variados, bollería artesana, tartas y bombones. Variedad de productos sin gluten.')");
+
+
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
