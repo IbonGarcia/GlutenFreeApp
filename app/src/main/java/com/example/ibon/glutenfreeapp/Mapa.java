@@ -184,7 +184,7 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
 
     public void getLocation() {
 
-        lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         criteria = new Criteria();
         // String bestProvider = String.valueOf(lm.getBestProvider(criteria, true));
 
@@ -193,7 +193,6 @@ public class Mapa extends AppCompatActivity implements LocationListener, MapboxM
         }
         Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         if (location != null) {
-            this.location = location;
             latitude = location.getLatitude();
             longitude = location.getLongitude();
         }

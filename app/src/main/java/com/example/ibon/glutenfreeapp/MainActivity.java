@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        
+
         solicitarPermiso("android.permission.CALL_PHONE", "La aplicacion necesita permisos para poder realizar llamadas.", 1, this);
     }
 
